@@ -1,17 +1,29 @@
 import socket
+target_host = "127.0.0.1"
+target_port = 9999
 
-target_host = "www.google.com"
-target_port = 80
-
+#-Create a socket object
+# -AF_INET is saying we are going to use ipv4
+# -SOCK_STREAM is saying we are using TCP
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+#We then connect to the client
 client.connect((target_host, target_port))
 
-msg = "GET / HTTP/1.1\r\nHost: google.com\r\n\r\n"
-byte = msg.encode()
-print(byte)
-client.send(byte)
+while True:
+    #The Message we are sending
+    msg = input()
 
-response = client.recv(4096)
+    #This encodes the message so it can be sent
+    byte = msg.encode()
+    #print(byte)
 
-print(response)
+    #This Sends the data
+    client.send(byte)
+
+    #This Listens for a response
+    response = client.recv(4096)
+    response = response.decode()
+
+    #And Prints the response
+    print(response)
