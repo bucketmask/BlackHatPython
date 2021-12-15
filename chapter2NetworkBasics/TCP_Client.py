@@ -7,6 +7,16 @@ target_port = 9999
 # -SOCK_STREAM is saying we are using TCP
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+
+hostname = socket.gethostname()
+ipaddr = socket.gethostbyname(hostname)
+print("hostname: " + hostname)
+print("hostname: " + ipaddr)
+
+
+
+
+
 #We then connect to the client
 client.connect((target_host, target_port))
 
